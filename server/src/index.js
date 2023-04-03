@@ -5,6 +5,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import 'dotenv/config';
+import homeRouter from './router/home';
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -16,6 +17,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(homeRouter);
 
 mongoose.set('strictQuery', false);
 mongoose
