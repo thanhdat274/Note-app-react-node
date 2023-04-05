@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import 'dotenv/config';
 import homeRouter from './router/home';
+import userRouter from './router/auth';
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(homeRouter);
+app.use('/api', userRouter)
 
 mongoose.set('strictQuery', false);
 mongoose
