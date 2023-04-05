@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import 'antd/dist/reset.css';
+import Router from './Router/routers';
 
 function App() {
-  return <div className="App"></div>;
+  return <Router />;
 }
 
 export default App;
