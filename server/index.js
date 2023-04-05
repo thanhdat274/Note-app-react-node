@@ -5,8 +5,8 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import 'dotenv/config';
-import homeRouter from './router/home';
-import userRouter from './router/auth';
+import homeRouter from './src/router/home';
+import userRouter from './src/router/auth';
 
 const app = express();
 const httpServer = http.createServer(app);
