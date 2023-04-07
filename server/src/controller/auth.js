@@ -23,6 +23,7 @@ export const signup = async (req, res) => {
     res.status(400).json({ message: "Đăng kí thất bại" })
   }
 };
+
 export const signin = async (req, res) => {
   const data = {
     email: req.body.email,
