@@ -5,6 +5,6 @@ import { userById } from "../controller/user.controller";
 
 const folderRouter = express.Router();
 folderRouter.get('/folder/:userId', ListFolder);
-folderRouter.param('userId', userById);
+// folderRouter.param('userId', userById);
 
 export default folderRouter; 

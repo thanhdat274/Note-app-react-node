@@ -24,13 +24,21 @@ app.use('/api', userRouter)
 app.use('/api', folderRouter)
 
 mongoose.set('strictQuery', false);
+// mongoose
+//   .connect(URI, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(async () => {
+//     console.log('Connected to DB');
+//     await new Promise((resolve) => httpServer.listen({ port: PORT }, resolve));
+//     console.log(`🚀 Server ready at http://localhost:${PORT}`);
+//   });
 mongoose
-  .connect(URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(async () => {
-    console.log('Connected to DB');
-    await new Promise((resolve) => httpServer.listen({ port: PORT }, resolve));
-    console.log(`🚀 Server ready at http://localhost:${PORT}`);
-  });
+  .connect(process.env.MONGODB_LOCAL)
+  .then(() => console.log("Kết nối MongoDB thành công"))
+  .catch((err) => console.log(err));
+
+app.listen(PORT, () => {
+  console.log("Hệ thống đang chạy trên cổng: ", PORT);
+});
