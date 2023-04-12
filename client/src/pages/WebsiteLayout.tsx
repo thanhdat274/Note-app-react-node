@@ -4,7 +4,7 @@ import Header from './Header/Header';
 
 const WebsiteLayout = () => {
   return (
-    <div className="m-auto bg-white w-full min-h-screen">
+    <div className="bg-white w-full min-h-screen">
       <Header />
       <Outlet />
     </div>

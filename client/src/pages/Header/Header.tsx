@@ -9,10 +9,10 @@ const Header = () => {
     setToggle(!toggle);
   };
   return (
-    <div className="shadow md:shadow-none">
-      <div className="flex md:hidden justify-between items-center px-4 mt-5">
+    <div className="shadow md:shadow-none bg-white">
+      <div className="flex md:hidden justify-between items-center px-4 mt-5 ">
         <h1 className="uppercase font-bold text-3xl">Note app</h1>
-        <button className="flex items-center" onClick={() => toggleNav()}>
+        <button className="flex items-center p-0" onClick={() => toggleNav()}>
           <i className="fa-solid fa-bars text-2xl"></i>
         </button>
       </div>
@@ -31,9 +31,9 @@ const Header = () => {
               <div className="flex flex-col md:flex md:flex-row gap-2">
                 <div className="flex flex-col md:flex md:flex-row gap-2">
                   <div className={`${styles['dropdown']} inline-block relative`}>
-                    <button className="bg-[#ffc107] md:bg-[#3961fb] font-bold text-black md:text-white px-[15px] py-[10px]">
+                    <div className="bg-[#ffc107] md:bg-[#3961fb] font-bold text-black md:text-white px-[15px] py-[10px]">
                       Xin chào: {cookies?.user?.user?.name}
-                    </button>
+                    </div>
                     <div className={`${styles['dropdown-menu']} absolute hidden text-gray-700 pt-2 rounded-md`}>
                       <button
                         onClick={() => logoutResetData()}
