@@ -6,11 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview",
-    "lint": "eslint --ext ts,tsx src/",
-    "lint:fix": "eslint --fix --ext ts,tsx src/",
-    "prettier": "prettier --check \"src/**/(*.tsx|*.ts|*.css|*.scss)\"",
-    "prettier:fix": "prettier --write \"src/**/(*.tsx|*.ts|*.css|*.scss)\""
+    "preview": "vite preview"
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",

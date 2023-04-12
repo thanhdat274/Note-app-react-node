@@ -41,7 +41,7 @@ const ListFolder = () => {
   }, [useData]);
 
   const removeFolder = (_id: any) => {
-    console.log(1);
+    console.log(_id);
   };
   return (
     <>
@@ -63,20 +63,19 @@ const ListFolder = () => {
                       <div
                         key={index}
                         className="product_items w-full p-[10px] bg-[#edf1f7] rounded-[10px] flex justify-between items-center"
-                        // onClick={() => navigate(`/folder/${item._id}`)}
                       >
-                        <div className="flex items-center gap-2">
+                        <Link to={`/folder/${item._id}`} className="flex items-center gap-2">
                           <FolderFilled className="text-[25px]" />
                           {item?.name?.length > 15 ? (
                             <h2 className="text-[16px]">{item?.name?.substring(0, 15)}...</h2>
                           ) : (
                             <p className="text-[16px]">{item?.name?.substring(0, 15)}</p>
                           )}
-                        </div>
+                        </Link>
                         <div className={`${styles['dropdown']} inline-block relative`}>
                           <BsThreeDotsVertical />
                           <div
-                            className={`${styles['dropdown-menu']} absolute hidden text-gray-700 rounded-md bg-white shadow`}
+                            className={`${styles['dropdown-menu']} absolute top-3 right-1  hidden text-gray-700 rounded-md bg-white shadow`}
                           >
                             <button
                               // onClick={() => logoutResetData()}
