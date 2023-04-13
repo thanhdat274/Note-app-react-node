@@ -32,11 +32,7 @@ export const UserProvider = ({ children }: any) => {
     setCookie,
   };
 
-  return (
-    <div>
-      <UserContext.Provider value={value}>{children}</UserContext.Provider>
-    </div>
-  );
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
 export default UserProvider;

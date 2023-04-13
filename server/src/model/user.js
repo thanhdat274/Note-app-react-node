@@ -1,7 +1,7 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 import { createHmac } from 'crypto';
 
-const userSchema = new Schema({
+const userSchema = mongoose.Schema({
   name: {
     type: String,
   },

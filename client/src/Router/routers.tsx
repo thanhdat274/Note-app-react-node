@@ -9,7 +9,6 @@ import { PrivateRouter } from './PrivateRouter';
 const Router = () => {
   return (
     <Routes>
-      <Route path="/signin" element={<Signin />} />
       <Route path="/signup" element={<Signup />} />
       <Route
         path="/"
@@ -20,6 +19,7 @@ const Router = () => {
         }
       >
         <Route index element={<Home />} />
+        <Route path="signin" element={<Signin />} />
       </Route>
     </Routes>
   );
