@@ -10,6 +10,7 @@ const Router = () => {
   return (
     <Routes>
       <Route path="/signup" element={<Signup />} />
+      <Route path="/signin" element={<Signin />} />
       <Route
         path="/"
         element={
@@ -19,7 +20,6 @@ const Router = () => {
         }
       >
         <Route index element={<Home />} />
-        <Route path="signin" element={<Signin />} />
       </Route>
     </Routes>
   );

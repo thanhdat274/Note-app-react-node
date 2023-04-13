@@ -31,10 +31,8 @@ const ListFolder = () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { data } = await listFolder(useData as any);
       setListFolders(data);
-      console.log(data);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      console.log(error);
       toastr.error(error?.response?.data?.message);
     }
   };
@@ -47,10 +45,8 @@ const ListFolder = () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { data } = await foldersDetail(dataOne as any);
       setFolderOne(data);
-      console.log('data 1 thư mục', data);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      console.log(error);
       toastr.error(error?.response?.data?.message);
     }
   };
