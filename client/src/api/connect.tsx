@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const connect = axios.create({
-  baseURL: 'https://be-note-app.vercel.app/api',
+  baseURL: 'http://localhost:8081/api',
 });
