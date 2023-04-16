@@ -61,7 +61,7 @@ const ListFolder = () => {
     if (confirm) {
       await removeFolders({ _id: _id, useData: useData })
         .then(() => {
-          toastr.success('Xóa nhà thành công');
+          toastr.success('Xóa thư mục thành công');
           setListFolders(listFolders.filter((item: any) => item._id !== _id));
         })
         .catch((error) => {

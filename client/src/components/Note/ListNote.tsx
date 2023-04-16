@@ -4,13 +4,27 @@ import { Link, useParams } from 'react-router-dom';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { NoteType } from '@/types/noteType';
 import { useUserContext } from '@/context/UserContext';
-import { listNotes } from '@/api/notes';
+import { DeleteNote, NoteOneById, listNotes } from '@/api/notes';
+import { Modal } from 'antd';
+import AddNote from './AddNote';
+import moment from 'moment';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
+import EditNote from './EditNote';
 
 const ListNote = () => {
   const [noteList, setNoteList] = useState<NoteType[]>([]);
+  const [noteOneList, setNoteOneList] = useState<NoteType[]>([]);
   const { id } = useParams();
   const { cookies } = useUserContext();
   const useData = cookies?.user;
+  const [modal1Open, setModal1Open] = useState(false);
+  const [modal2Open, setModal2Open] = useState(false);
+  const [resetPage, setResetPage] = useState(0);
+
+  const handleResetPage = () => {
+    setResetPage(resetPage + 1);
+  };
 
   const getNoteList = async () => {
     try {
@@ -21,9 +35,38 @@ const ListNote = () => {
     }
   };
 
+  const getByIdNote = async (_id: any) => {
+    const dataOne = { _id: _id, useData: useData };
+    setModal1Open(true);
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data } = await NoteOneById(dataOne as any);
+      setNoteOneList(data);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toastr.error(error?.response?.data?.message);
+    }
+  };
+
   useEffect(() => {
-    getNoteList();
+    if (id) {
+      getNoteList();
+    }
   }, []);
+
+  const removeNote = async (_id: any) => {
+    const confirm = window.confirm('Bạn có muốn xóa không ?');
+    if (confirm) {
+      await DeleteNote({ _id: _id, useData: useData })
+        .then(() => {
+          toastr.success('Xóa ghi chú thành công');
+          setNoteList(noteList.filter((item: any) => item._id !== _id));
+        })
+        .catch((error) => {
+          toastr.error(error?.response?.data?.message);
+        });
+    }
+  };
   return (
     <>
       <div className="max-w-full mx-auto py-6 sm:px-6 lg:px-8">
@@ -33,7 +76,7 @@ const ListNote = () => {
             <p className="text-[15px]">Trang chủ</p>
           </Link>
           <button
-            // onClick={() => setModal2Open(true)}
+            onClick={() => setModal2Open(true)}
             className="flex items-center justify-center gap-2 px-[10px] py-[5px] rounded-2xl bg-green-100"
           >
             <FileAddFilled className="text-[20px]" />
@@ -49,36 +92,34 @@ const ListNote = () => {
                     return (
                       <div key={index} className="w-full p-[10px] bg-[#edf1f7] rounded-[10px]">
                         <div className="w-full p-[10px] bg-[#edf1f7] rounded-[10px] flex justify-between items-center">
-                          <FileTextOutlined />
+                          <div className="flex items-center gap-2">
+                            <FileTextOutlined />
+                            <p>{item?.name?.substring(0, 10)}</p>
+                          </div>
                           <div className="flex items-center gap-2">
                             <button
-                            // onClick={() => {
-                            //   getByIdFolders(item?._id);
-                            // }}
+                              onClick={() => {
+                                getByIdNote(item?._id);
+                              }}
                             >
                               <EyeOutlined className="text-[15px] flex" />
                             </button>
                             <button
-                            // onClick={() => {
-                            //   removeFolder(item?._id);
-                            // }}
+                              onClick={() => {
+                                removeNote(item?._id);
+                              }}
                             >
                               <BsFillTrashFill className="text-[15px] flex" />
                             </button>
                           </div>
                         </div>
-                        {/* <div className="bg-slate-50 py-[5px] px-[10px] rounded-[5px] shadow">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque dicta, incidunt exercitationem ad
-                      laudantium nesciunt? Omnis eligendi laboriosam possimus inventore, nisi, ullam quas pariatur
-                      quisquam ipsum, cumque illo sunt quos.
-                    </div> */}
                         <div
                           className="bg-slate-50 py-[5px] px-[10px] rounded-[5px] shadow"
                           dangerouslySetInnerHTML={{
                             __html: `${item?.content.substring(0, 100)}`,
                           }}
                         />
-                        <p className="text-[10px] py-1">April 10th 2023, 5:56:26 pm</p>
+                        <p className="text-[10px] py-1">{moment(item?.updatedAt).format('DD-MM-YYYY, HH:MM:SS')}</p>
                       </div>
                     );
                   })}
@@ -88,20 +129,17 @@ const ListNote = () => {
           </div>
         </div>
       </div>
-      {/* <Modal
-        title="Thêm mới thư mục"
+      <Modal
+        title="Thêm mới ghi chú"
         centered
         open={modal2Open}
         onOk={() => setModal2Open(false)}
         onCancel={() => setModal2Open(false)}
         okButtonProps={{ hidden: true }}
         cancelButtonProps={{ hidden: true }}
+        width={'100rem'}
       >
-        <AddFolder
-          resetDataListFolder={getListFolder}
-          handleResetPage={() => handleResetPage()}
-          setModal2Open={setModal2Open}
-        />
+        <AddNote resetDataNotes={getNoteList} handleResetPage={() => handleResetPage()} setModal2Open={setModal2Open} />
       </Modal>
       <Modal
         title="Đổi tên thư mục"
@@ -112,13 +150,13 @@ const ListNote = () => {
         okButtonProps={{ hidden: true }}
         cancelButtonProps={{ hidden: true }}
       >
-        <EditFokder
-          dataFolderOne={folderOne}
-          resetDataListFolder={getListFolder}
+        <EditNote
+          dataNoteOne={noteOneList}
+          resetDataNotes={getNoteList}
           handleResetPage={() => handleResetPage()}
           setModal2Open={setModal1Open}
         />
-      </Modal> */}
+      </Modal>
     </>
   );
 };
