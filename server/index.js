@@ -20,6 +20,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(express.static('public'))
 app.use(homeRouter);
 app.use('/api', userRouter)
 app.use('/api', folderRouter)
