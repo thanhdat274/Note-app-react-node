@@ -5,12 +5,13 @@ import WebsiteLayout from '@/pages/WebsiteLayout';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { PrivateRouter } from './PrivateRouter';
+import ListNote from '@/components/Note/ListNote';
 
 const Router = () => {
   return (
     <Routes>
-      <Route path="/signin" element={<Signin />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/signin" element={<Signin />} />
       <Route
         path="/"
         element={
@@ -20,6 +21,7 @@ const Router = () => {
         }
       >
         <Route index element={<Home />} />
+        <Route path="/folder/:id" element={<ListNote />} />
       </Route>
     </Routes>
   );

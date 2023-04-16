@@ -11,7 +11,7 @@ export const signup = async (req, res) => {
       })
     }
     const user = await new User({ name, email, password }).save();
-    res.json({
+    return res.json({
       user: {
         _id: user._id,
         email: user.email,
@@ -20,9 +20,10 @@ export const signup = async (req, res) => {
       }
     })
   } catch (error) {
-    res.status(400).json({ message: "Đăng kí thất bại" })
+    return res.status(400).json({ message: "Đăng kí thất bại" })
   }
 };
+
 export const signin = async (req, res) => {
   const data = {
     email: req.body.email,
@@ -41,6 +42,6 @@ export const signin = async (req, res) => {
     return res.status(200).json({ token, user: { _id, name, email } })
   } catch (error) {
     console.log(error);
-    res.status(400).json({ message: "Đăng nhập thất bại" })
+    return res.status(400).json({ message: "Đăng nhập thất bại" })
   }
 }
