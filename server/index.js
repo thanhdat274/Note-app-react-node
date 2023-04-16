@@ -14,7 +14,7 @@ const app = express();
 const httpServer = http.createServer(app);
 const PORT = process.env.PORT || 4000;
 // Connect to DB
-const URI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@note-app.e8a6igu.mongodb.net/?retryWrites=true&w=majority`;
+const URI = process.env.MONGODB_URL;
 
 app.use(cors());
 app.use(bodyParser.json());
