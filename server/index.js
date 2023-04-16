@@ -5,7 +5,6 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import 'dotenv/config';
-import homeRouter from './src/router/home';
 import userRouter from './src/router/auth';
 import folderRouter from './src/router/folder.router';
 import noteRouters from './src/router/notes.router';
@@ -21,7 +20,6 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.static('public'))
-app.use(homeRouter);
 app.use('/api', userRouter)
 app.use('/api', folderRouter)
 app.use('/api', noteRouters)
