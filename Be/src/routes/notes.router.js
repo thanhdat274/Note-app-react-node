@@ -1,8 +1,8 @@
-import express from "express";
+const express = require("express");
 
-import { requireSignin } from "../middlewares/checkAuth";
-import { userById } from "../controller/user.controller";
-import { AddNote, DeleteNotes, ListNote, NoteById, updateNote } from "../controller/note.controller";
+const { requireSignin } = require("../middlewares/checkAuth");
+const { userById } = require("../controller/user.controller");
+const { AddNote, DeleteNotes, ListNote, NoteById, updateNote } = require("../controller/note.controller");
 
 const noteRouters = express.Router();
 
@@ -14,4 +14,4 @@ noteRouters.put('/note/:id', requireSignin, updateNote);
 
 noteRouters.param('userId', userById);
 
-export default noteRouters; 
+module.exports = noteRouters; 

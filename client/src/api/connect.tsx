@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const connect = axios.create({
-  baseURL: 'http://localhost:8081/api',
+  baseURL: 'https://note-app-react-node-y78v.vercel.app/api',
 });

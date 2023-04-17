@@ -1,6 +1,6 @@
-import Folder from '../model/folder.model';
+const Folder = require('../model/folder.model');
 
-export const AddFolder = async (req, res) => {
+exports.AddFolder = async (req, res) => {
   const userID = req.profile._id;
   if (!userID) return res.status(404).json({ message: 'Không tìm thấy người dùng' });
   try {
@@ -11,7 +11,7 @@ export const AddFolder = async (req, res) => {
   }
 }
 
-export const ListFolder = async (req, res) => {
+exports.ListFolder = async (req, res) => {
   const userID = req.profile._id;
   if (!userID) return res.status(404).json({ message: 'Không tìm thấy người dùng' });
   try {
@@ -22,7 +22,7 @@ export const ListFolder = async (req, res) => {
   }
 };
 
-export const FolderById = async (req, res) => {
+exports.FolderById = async (req, res) => {
   try {
     const folders = await Folder.findOne({ _id: req.params.id }).exec()
     return res.status(200).json(folders)
@@ -31,7 +31,7 @@ export const FolderById = async (req, res) => {
   }
 }
 
-export const DeleteFolder = async (req, res) => {
+exports.DeleteFolder = async (req, res) => {
   try {
     const folders = await Folder.findOneAndDelete({ _id: req.params.id }).exec()
     return res.status(200).json({ folders, message: 'Xóa thành công' })
@@ -40,7 +40,7 @@ export const DeleteFolder = async (req, res) => {
   }
 }
 
-export const updateFolders = async (req, res) => {
+exports.updateFolders = async (req, res) => {
   try {
     const folders = await Folder.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }).exec()
     return res.status(200).json({ folders, message: 'Cập nhật thành công' })

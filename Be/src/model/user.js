@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import { createHmac } from 'crypto';
+const mongoose = require('mongoose');
+const { createHmac } = require('crypto');
 
 const userSchema = mongoose.Schema({
   name: {
@@ -41,4 +41,4 @@ userSchema.pre('save', function (next) {
   }
 })
 
-export default mongoose.model('User', userSchema)
+module.exports = mongoose.model('User', userSchema)

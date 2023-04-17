@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 const folderSchema = mongoose.Schema({
   name: {
@@ -11,4 +11,4 @@ const folderSchema = mongoose.Schema({
   },
 
 }, { timestamps: true });
-export default mongoose.model('Folder', folderSchema)
+module.exports = mongoose.model('Folder', folderSchema)

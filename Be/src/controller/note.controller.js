@@ -1,6 +1,6 @@
-import Note from '../model/note.model'
+const Note = require('../model/note.model')
 
-export const ListNote = async (req, res) => {
+exports.ListNote = async (req, res) => {
   const folderId = req.params.folderId;
   if (!folderId) return res.status(404).json({ message: 'Không tìm thấy thư mục' });
   try {
@@ -11,7 +11,7 @@ export const ListNote = async (req, res) => {
   }
 }
 
-export const AddNote = async (req, res) => {
+exports.AddNote = async (req, res) => {
   try {
     const notes = await Note(req.body).save()
     return res.status(200).json(notes);
@@ -20,7 +20,7 @@ export const AddNote = async (req, res) => {
   }
 }
 
-export const DeleteNotes = async (req, res) => {
+exports.DeleteNotes = async (req, res) => {
   try {
     const notes = await Note.findOneAndDelete({ _id: req.params.id }).exec()
     return res.status(200).json({ notes, message: 'Xóa thành công' })
@@ -29,7 +29,7 @@ export const DeleteNotes = async (req, res) => {
   }
 }
 
-export const NoteById = async (req, res) => {
+exports.NoteById = async (req, res) => {
   try {
     const notes = await Note.findOne({ _id: req.params.id }).exec()
     return res.status(200).json(notes)
@@ -38,7 +38,7 @@ export const NoteById = async (req, res) => {
   }
 }
 
-export const updateNote = async (req, res) => {
+exports.updateNote = async (req, res) => {
   try {
     const notes = await Note.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }).exec()
     return res.status(200).json({ notes, message: 'Cập nhật thành công' })

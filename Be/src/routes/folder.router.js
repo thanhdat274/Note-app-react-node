@@ -1,9 +1,8 @@
-import express from "express";
-import { AddFolder, DeleteFolder, FolderById, ListFolder, updateFolders } from "../controller/folder.controller";
-import { requireSignin } from "../middlewares/checkAuth";
-import { userById } from "../controller/user.controller";
-
+const express = require("express");
 const folderRouter = express.Router();
+const { AddFolder, DeleteFolder, FolderById, ListFolder, updateFolders } = require("../controller/folder.controller");
+const { requireSignin } = require("../middlewares/checkAuth");
+const { userById } = require("../controller/user.controller");
 
 folderRouter.get('/folder/:userId', requireSignin, ListFolder);
 folderRouter.get('/folder/detail/:id', requireSignin, FolderById);
@@ -13,4 +12,4 @@ folderRouter.put('/folder/:id', requireSignin, updateFolders);
 
 folderRouter.param('userId', userById);
 
-export default folderRouter; 
+module.exports = folderRouter; 
