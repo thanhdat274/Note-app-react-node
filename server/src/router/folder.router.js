@@ -13,4 +13,4 @@ folderRouter.put('/folder/:id', requireSignin, updateFolders);
 
 folderRouter.param('userId', userById);
 
-export default folderRouter; 
+module.exports = folderRouter; 

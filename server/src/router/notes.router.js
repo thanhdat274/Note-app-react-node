@@ -1,4 +1,4 @@
-import express from "express";
+const express = require("express");
 
 import { requireSignin } from "../middlewares/checkAuth";
 import { userById } from "../controller/user.controller";
@@ -14,4 +14,4 @@ noteRouters.put('/note/:id', requireSignin, updateNote);
 
 noteRouters.param('userId', userById);
 
-export default noteRouters; 
+module.exports = noteRouters; 

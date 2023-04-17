@@ -1,13 +1,13 @@
-import express from 'express';
-import morgan from 'morgan';
-import http from 'http';
-import cors from 'cors';
-import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
+const express = require('express');
+const morgan = require('morgan');
+const http = require('http');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 import 'dotenv/config';
-import userRouter from './src/router/auth';
-import folderRouter from './src/router/folder.router';
-import noteRouters from './src/router/notes.router';
+const userRouter = require('./src/router/auth');
+const folderRouter = require('./src/router/folder.router');
+const noteRouters = require('./src/router/notes.router');
 
 const app = express();
 const httpServer = http.createServer(app);

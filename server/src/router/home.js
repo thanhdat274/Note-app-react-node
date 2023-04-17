@@ -8,4 +8,4 @@ homeRouter.get('/', (req, res) => {
     `)
 })
 
-export default homeRouter;
+module.exports = homeRouter;
