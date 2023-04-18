@@ -7,7 +7,7 @@ const home = require("./src/routes/home");
 const userRouter = require('./src/routes/auth.router');
 const folderRouter = require('./src/routes/folder.router');
 const noteRouters = require('./src/routes/notes.router');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 
 require('dotenv').config();
 const URI = process.env.MONGODB_URL;
@@ -15,7 +15,7 @@ const URI = process.env.MONGODB_URL;
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 
 // Routes
 app.use("/", home);
