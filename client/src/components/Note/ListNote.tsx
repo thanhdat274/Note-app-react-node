@@ -87,10 +87,10 @@ const ListNote = () => {
           <div className="sm:-mx-6 lg:-mx-8">
             <div className="py-2 align-mparamle min-w-full flex flex-col gap-6 ">
               <div className="w-full p-4">
-                <div className="w-full grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-8">
+                <div className="w-full grid gap-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6">
                   {noteList?.map((item, index: number) => {
                     return (
-                      <div key={index} className="w-full p-[10px] bg-[#edf1f7] rounded-[10px]">
+                      <div key={index} className="w-full p-[10px] bg-[#edf1f7] rounded-[10px] flex flex-col">
                         <div className="w-full p-[10px] bg-[#edf1f7] rounded-[10px] flex justify-between items-center">
                           <div className="flex items-center gap-2">
                             <FileTextOutlined />
@@ -114,9 +114,9 @@ const ListNote = () => {
                           </div>
                         </div>
                         <div
-                          className="bg-slate-50 py-[5px] px-[10px] rounded-[5px] shadow"
+                          className="bg-slate-50 py-[5px] px-[10px] rounded-[5px] shadow break-words"
                           dangerouslySetInnerHTML={{
-                            __html: `${item?.content.substring(0, 100)}`,
+                            __html: `${item?.content.substring(0, 300)}`,
                           }}
                         />
                         <p className="text-[10px] py-1">{moment(item?.updatedAt).format('DD-MM-YYYY, HH:MM:SS')}</p>
