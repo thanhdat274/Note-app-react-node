@@ -28,4 +28,4 @@ mongoose.connect(URI)
   .catch(err => console.log("Kết nối với Database không thành công"))
 // connection
 const port = process.env.PORT || 9001;
-app.listen(port, () => console.log(`Listening to port ${port}`));
+app.listen(port, () => console.log(`🚀 Server ready at http://localhost:${port}`));
