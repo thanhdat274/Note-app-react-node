@@ -63,13 +63,13 @@ const EditFokder = ({ resetDataListFolder, dataFolderOne, handleResetPage, setMo
             id="name"
             type="text"
             placeholder="Xin mời nhập tên thư mục"
-            {...register('name', { required: true, minLength: 6 })}
+            {...register('name', { required: true, minLength: 3 })}
           />
           {errors.name?.type === 'required' && (
             <span className="text-[red] mt-1 block">Vui lòng nhập tên thư mục!</span>
           )}
           {errors.name?.type === 'minLength' && (
-            <span className="text-[red] mt-1 block">Tên thư mục tối thiểu 6 ký tự!</span>
+            <span className="text-[red] mt-1 block">Tên thư mục tối thiểu 3 ký tự!</span>
           )}
         </div>
 

@@ -94,7 +94,7 @@ const ListNote = () => {
                         <div className="w-full p-[10px] bg-[#edf1f7] rounded-[10px] flex justify-between items-center">
                           <div className="flex items-center gap-2">
                             <FileTextOutlined />
-                            <p>{item?.name?.substring(0, 10)}</p>
+                            <p>{item?.name?.substring(0, 15)}</p>
                           </div>
                           <div className="flex items-center gap-2">
                             <button
